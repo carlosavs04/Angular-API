@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/angular/v1')->group(function () {
     Route::get('/personas', [PersonaController::class, 'showPersons'])->name('show.personas');
-    Route::post('/personas', [PersonaController::class, 'create'])->name('create.persona');
+    Route::middleware('auth:sanctum')->post('/personas', [PersonaController::class, 'create'])->name('create.persona');
     Route::post('/register', [UserController::class, 'register'])->name('register');
     Route::post('/login', [UserController::class, 'login'])->name('login');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
